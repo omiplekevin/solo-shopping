@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.project.soloshoppingcart.datamodel.ProductsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_15">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/itemCardMcv"
+            android:layout_width="@dimen/dimen_100"
+            android:layout_height="@dimen/dimen_120"
+            app:cardCornerRadius="20dp"
+            app:customBackground="@{product.bgColor}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
+
+            <ImageView
+                android:id="@+id/itemIv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                app:customImage="@{product.id}"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/itemCategoryTv"
+            style="@style/ShopItemCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/itemCardMcv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{product.category}"/>
+
+        <TextView
+            android:id="@+id/itemNameTv"
+            style="@style/ShopItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/itemCategoryTv"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryTv"
+            android:text="@{product.name}" />
+
+        <TextView
+            android:id="@+id/itemPriceTv"
+            style="@style/ShopItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/itemCardMcv"
+            app:layout_constraintStart_toStartOf="@id/itemNameTv"
+            app:formattedPrice="@{product.price}"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/dimen_100"
+            android:layout_height="@dimen/dimen_40"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
+
+            <LinearLayout
+                android:id="@+id/addLayoutLl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/orange_1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="5dp"
+                    android:text="@string/list_item_add" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:padding="8dp"
+                    android:src="@drawable/plus" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

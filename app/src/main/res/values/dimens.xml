@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="shop_toolbar_height">56dp</dimen>
+    <dimen name="shop_toolbar_title_margin">20dp</dimen>
+    <dimen name="dimen_5">5dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_15">15dp</dimen>
+    <dimen name="dimen_26">26dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
+    <dimen name="dimen_32">32dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_75">75dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_120">120dp</dimen>
+</resources>

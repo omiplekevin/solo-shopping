@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.project.soloshoppingcart.datamodel.ProductsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:paddingBottom="@dimen/dimen_10"
+        android:background="@drawable/bg_rectangle_thick_bottom_border"
+        app:inCartCustomBackground="@{product.bgColor}">
+
+        <TextView
+            android:id="@+id/inCartNameTv"
+            style="@style/ShopInCartItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{product.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/inCartPriceTv"
+            style="@style/ShopInCartItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:formattedPrice="@{product.price}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inCartNameTv" />
+
+        <ImageView
+            android:id="@+id/removeProductIv"
+            style="@style/ShopActionDismiss"
+            android:layout_width="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

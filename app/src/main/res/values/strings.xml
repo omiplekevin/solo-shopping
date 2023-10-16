@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SOLOShoppingCart</string>
+    <string name="toolbar_title">Shop</string>
+    <string name="toolbar_page_title_products">Products</string>
+    <string name="toolbar_page_title_cart">Cart</string>
+    <string name="list_item_add">Add</string>
+    <string name="prompt_append_string">has been added to your cart.</string>
+    <string name="btn_buy_now">Buy Now</string>
+</resources>

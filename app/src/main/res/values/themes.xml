@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SOLOShoppingCart" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textViewStyle">@style/MontserratFontFamily</item>
+    </style>
+
+    <style name="MontserratFontFamily" parent="Base.Theme.SOLOShoppingCart">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="Theme.SOLOShoppingCart" parent="Base.Theme.SOLOShoppingCart" />
+</resources>
