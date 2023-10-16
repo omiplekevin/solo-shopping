@@ -10,6 +10,7 @@ import com.project.soloshoppingcart.ui.fragments.ProductsFragment
 import com.project.soloshoppingcart.repository.DataRepository
 import com.project.soloshoppingcart.ui.callback.CartEventCallback
 import com.project.soloshoppingcart.ui.fragments.CartFragment
+import com.project.soloshoppingcart.ui.fragments.CheckoutFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity(), CartEventCallback {
                 }
                 is CartFragment -> {
                     binding.shopPageLabelTv.text = getString(R.string.toolbar_page_title_cart)
+                }
+                is CheckoutFragment -> {
+                    binding.shopPageLabelTv.text = getString(R.string.toolbar_page_title_checkout)
                 }
             }
         }
@@ -72,8 +76,18 @@ class MainActivity : AppCompatActivity(), CartEventCallback {
                 .commit()
     }
 
-    private fun switchToCheckoutView() {
+    private fun switchToOrderConfirmation() {
 
+    }
+
+    private fun switchToCheckoutView() {
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(
+            binding.fragmentHolder.id,
+            CheckoutFragment.newInstance(this),
+            getString(R.string.toolbar_page_title_cart))
+            .addToBackStack("checkout")
+            .commit()
     }
 
     private fun countAndUpdateBadge() {
@@ -96,5 +110,9 @@ class MainActivity : AppCompatActivity(), CartEventCallback {
 
     override fun onProceedToCheckout() {
         switchToCheckoutView()
+    }
+
+    override fun onOrderConfirmation() {
+        switchToOrderConfirmation()
     }
 }

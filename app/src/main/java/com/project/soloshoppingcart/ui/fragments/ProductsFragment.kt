@@ -22,7 +22,7 @@ import com.google.android.material.snackbar.Snackbar.SnackbarLayout
 import com.project.soloshoppingcart.R
 import com.project.soloshoppingcart.databinding.ChipFilterBinding
 import com.project.soloshoppingcart.databinding.FragmentProductsBinding
-import com.project.soloshoppingcart.databinding.LayoutPromptProductPlacedBinding
+import com.project.soloshoppingcart.databinding.LayoutPromptBinding
 import com.project.soloshoppingcart.datamodel.Products
 import com.project.soloshoppingcart.datamodel.ProductsItem
 import com.project.soloshoppingcart.ui.adapter.ProductsRVAdapter
@@ -102,7 +102,7 @@ class ProductsFragment(private val eventCallback: CartEventCallback) : Fragment(
 
     private fun showPromptInCart(product: ProductsItem) {
         val snackbar = Snackbar.make(requireView(), "", Snackbar.LENGTH_LONG)
-        val sbViewBinding = LayoutPromptProductPlacedBinding.inflate(layoutInflater)
+        val sbViewBinding = LayoutPromptBinding.inflate(layoutInflater)
         ViewCompat.setBackgroundTintList(
             sbViewBinding.promptTv,
             ColorStateList.valueOf(Color.parseColor(product.bgColor))

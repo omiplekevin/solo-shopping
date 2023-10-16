@@ -39,7 +39,7 @@
         <item name="android:fontFamily">@font/montserrat_extra_bold</item>
     </style>
 
-    <style name="ShopPromptInCart" parent="Base.Theme.SOLOShoppingCart">
+    <style name="ShopPromptMessage" parent="Base.Theme.SOLOShoppingCart">
         <item name="android:background">@drawable/bg_rectangle_thick_bottom_border</item>
         <item name="android:padding">30dp</item>
         <item name="android:paddingStart">30dp</item>
@@ -85,6 +85,30 @@
         <item name="android:background">@drawable/bg_oval_thick_bottom_border</item>
         <item name="android:padding">5dp</item>
         <item name="android:src">@drawable/close</item>
+    </style>
+
+    <style name="ShopFormField" parent="Base.Theme.SOLOShoppingCart">
+        <item name="android:background">@drawable/bg_form_input</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">@dimen/dimen_10</item>
+    </style>
+
+    <style name="ShopFormFieldEmail" parent="ShopFormField">
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
+
+    <style name="ShopSwitch" parent="Base.Theme.SOLOShoppingCart">
+        <item name="android:layout_margin">15dp</item>
+    </style>
+
+    <style name="ShopPayButton" parent="Base.Theme.SOLOShoppingCart">
+        <item name="android:background">@drawable/bg_btn_blue</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">@dimen/dimen_15</item>
     </style>
 
 </resources>

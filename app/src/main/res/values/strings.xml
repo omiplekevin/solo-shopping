@@ -3,7 +3,18 @@
     <string name="toolbar_title">Shop</string>
     <string name="toolbar_page_title_products">Products</string>
     <string name="toolbar_page_title_cart">Cart</string>
+    <string name="toolbar_page_title_checkout">Checkout</string>
     <string name="list_item_add">Add</string>
     <string name="prompt_append_string">has been added to your cart.</string>
     <string name="btn_buy_now">Buy Now</string>
+
+    <string name="label_checkout_name">Your name</string>
+    <string name="hint_name">e.g John Doe</string>
+    <string name="label_checkout_email">Your email</string>
+    <string name="hint_email">e.g john_doe@gmail.com</string>
+    <string name="label_agree_terms">I agree to the terms and conditions</string>
+
+    <string name="prompt_fields_incomplete">Please complete fields to proceed.</string>
+    <string name="prompt_accept_tAndC">Please accept terms and conditions</string>
+    <string name="btn_buy_template">Pay $%.0f</string>
 </resources>

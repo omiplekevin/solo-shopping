@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:textViewStyle">@style/MontserratFontFamily</item>
+        <item name="android:editTextStyle">@style/MontserratFontFamily</item>
     </style>
 
     <style name="MontserratFontFamily" parent="Base.Theme.SOLOShoppingCart">
