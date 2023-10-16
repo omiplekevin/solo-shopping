@@ -3,6 +3,7 @@ package com.project.soloshoppingcart.repository
 import android.content.Context
 import com.google.gson.Gson
 import com.project.soloshoppingcart.R
+import com.project.soloshoppingcart.datamodel.OrderReceipt
 import com.project.soloshoppingcart.datamodel.Products
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.BufferedReader
@@ -16,6 +17,7 @@ import javax.inject.Singleton
 interface DataRepository {
     fun readRawData(): Products?
     fun writeInCart(products: Products)
+    fun writeOrderReceipt(orderReceipt: OrderReceipt)
     fun readInCart(): Products?
 }
 
@@ -56,5 +58,11 @@ class DataRepositoryImpl @Inject constructor(
         val file = File(context.filesDir, "inCart.json")
         val b = file.createNewFile()
         file.writeText(Gson().toJson(products))
+    }
+
+    override fun writeOrderReceipt(orderReceipt: OrderReceipt) {
+        val file = File(context.filesDir, "${orderReceipt.orderId}.json")
+        val b = file.createNewFile()
+        file.writeText(Gson().toJson(orderReceipt))
     }
 }

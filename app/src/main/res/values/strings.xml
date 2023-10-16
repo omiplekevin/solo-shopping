@@ -4,6 +4,7 @@
     <string name="toolbar_page_title_products">Products</string>
     <string name="toolbar_page_title_cart">Cart</string>
     <string name="toolbar_page_title_checkout">Checkout</string>
+    <string name="toolbar_page_title_ordconfirm">Order Confirmation</string>
     <string name="list_item_add">Add</string>
     <string name="prompt_append_string">has been added to your cart.</string>
     <string name="btn_buy_now">Buy Now</string>
@@ -17,4 +18,8 @@
     <string name="prompt_fields_incomplete">Please complete fields to proceed.</string>
     <string name="prompt_accept_tAndC">Please accept terms and conditions</string>
     <string name="btn_buy_template">Pay $%.0f</string>
+
+    <string name="label_order_processed">Your order has been processed</string>
+    <string name="label_order_id">Your order ID is %s</string>
+    <string name="btn_return_to_products">Return to Products</string>
 </resources>

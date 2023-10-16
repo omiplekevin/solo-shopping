@@ -3,6 +3,7 @@ package com.project.soloshoppingcart.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.project.soloshoppingcart.datamodel.OrderReceipt
 import com.project.soloshoppingcart.datamodel.Products
 import com.project.soloshoppingcart.datamodel.ProductsItem
 import com.project.soloshoppingcart.repository.DataRepository
@@ -14,6 +15,7 @@ class CheckoutViewModel @Inject constructor(private val resProvider: DataReposit
 
     val products = MutableLiveData<Products>()
     val productsInCart = MutableLiveData<HashMap<Long, ProductsItem>>()
+    val orderReceipt = MutableLiveData<OrderReceipt>()
 
     private var productsInCartMap = hashMapOf<Long, ProductsItem>()
 
@@ -46,6 +48,21 @@ class CheckoutViewModel @Inject constructor(private val resProvider: DataReposit
         productsInCart.postValue(productsInCartMap)
     }
 
+    fun createOrderReceipt(name: String, email: String) {
+        val productsForCheckout = products.value
+        val timeInCheckout = System.currentTimeMillis()
+        val latestOrderReceipt = OrderReceipt(name, email, productsForCheckout!!, "ord$timeInCheckout")
+        resProvider.writeOrderReceipt(latestOrderReceipt)
+        orderReceipt.postValue(latestOrderReceipt)
+    }
+
+    fun clearInCartItems() {
+        resProvider.writeInCart(Products())
+        products.postValue(Products())
+        productsInCartMap = hashMapOf()
+        productsInCart.postValue(productsInCartMap)
+    }
+
     private fun createInCartModel(productsInCart: HashMap<Long, ProductsItem>): Products {
         val newProductModel = Products()
         var items = mutableListOf<ProductsItem>()
@@ -55,5 +72,6 @@ class CheckoutViewModel @Inject constructor(private val resProvider: DataReposit
         newProductModel.products = items.toList()
         return newProductModel
     }
+
 
 }

@@ -1,6 +1,5 @@
 package com.project.soloshoppingcart.ui.fragments
 
-import android.app.Activity
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -8,55 +7,46 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.project.soloshoppingcart.R
-import com.project.soloshoppingcart.databinding.FragmentCheckoutBinding
+import com.project.soloshoppingcart.databinding.FragmentOrderConfirmationBinding
 import com.project.soloshoppingcart.databinding.LayoutPromptBinding
 import com.project.soloshoppingcart.datamodel.Products
 import com.project.soloshoppingcart.ui.callback.CartEventCallback
 import com.project.soloshoppingcart.viewmodel.CheckoutViewModel
+import com.project.soloshoppingcart.viewmodel.OrdConfirmationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class CheckoutFragment(private val eventCallback: CartEventCallback) : Fragment() {
+class OrdConfirmationFragment(
+    private val eventCallback: CartEventCallback,
+    private val orderReceiptRef: String
+) : Fragment() {
 
     companion object {
-        fun newInstance(callback: CartEventCallback) = CheckoutFragment(callback)
+        fun newInstance(callback: CartEventCallback, orderReceiptRef: String) =
+            OrdConfirmationFragment(callback, orderReceiptRef)
     }
 
-    private val viewModel by viewModels<CheckoutViewModel>()
-    private lateinit var binding: FragmentCheckoutBinding
+    private val viewModel by viewModels<OrdConfirmationViewModel>()
+    private lateinit var binding: FragmentOrderConfirmationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCheckoutBinding.inflate(inflater, container, false)
-        binding.payBtn.setOnClickListener {
-            onPay()
+        binding = FragmentOrderConfirmationBinding.inflate(inflater, container, false)
+        binding.returnToProductsBtn.setOnClickListener {
+            onReturnToProducts()
         }
-        viewModel.productsInCart.observe(viewLifecycleOwner) {
-            eventCallback.onCartUpdated()
-        }
-        viewModel.products.observe(viewLifecycleOwner) {
-            updateTotals(it)
-        }
-        viewModel.orderReceipt.observe(viewLifecycleOwner) {
-            viewModel.clearInCartItems()
-            eventCallback.onCartUpdated()
-            eventCallback.onOrderConfirmation(it)
-        }
-        viewModel.getData()
+        binding.orderIdTv.text = String.format(getString(R.string.label_order_id, orderReceiptRef))
         return binding.root
     }
 
@@ -69,31 +59,11 @@ class CheckoutFragment(private val eventCallback: CartEventCallback) : Fragment(
                 }
             }
         }
-        binding.payBtn.text = String.format(getString(R.string.btn_buy_template), total)
     }
 
-    private fun onPay() {
-        hideSoftKeyboard()
+    private fun onReturnToProducts() {
         //basic validation
-        if (binding.termsSw.isChecked) {
-            if (binding.checkoutNameEt.text.isNotEmpty() && binding.checkoutEmailEt.text.isNotEmpty()) {
-                //proceed to payment
-                viewModel.createOrderReceipt(
-                    binding.checkoutNameEt.text.toString(),
-                    binding.checkoutEmailEt.text.toString()
-                )
-            } else {
-                showPromptFieldCheck(getString(R.string.prompt_fields_incomplete))
-            }
-        } else {
-            showPromptFieldCheck(getString(R.string.prompt_accept_tAndC))
-        }
-    }
-
-    private fun hideSoftKeyboard() {
-        val inputMethodManager =
-            activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+        eventCallback.onReturnToProducts()
     }
 
     private fun showPromptFieldCheck(message: String) {
